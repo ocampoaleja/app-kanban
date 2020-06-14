@@ -1,24 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import "./App.css";
+
+import { Kanban, Header } from "./components/organisms";
+import axios from "axios";
 
 function App() {
+  const [kanbanData, setKanbanData] = useState({});
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const { data } = await axios.get("http://localhost:3000/kanban");
+        setKanbanData(data);
+      } catch (e) {
+        console.log(e);
+      }
+    })();
+  }, []);
+
+  console.log(kanbanData);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="kanban">
+      <Header data={kanbanData} />
+      <Kanban data={kanbanData} />
     </div>
   );
 }
