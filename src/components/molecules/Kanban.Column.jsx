@@ -1,5 +1,6 @@
 import React from "react";
 import KanbanCard from "./Kanban.Card";
+import AddColumn from "./AddColumn";
 
 export default function KanbanColumn({ title, cards }) {
   return (
@@ -9,6 +10,9 @@ export default function KanbanColumn({ title, cards }) {
         {cards.map((card) => (
           <KanbanCard data={card} />
         ))}
+      </div>
+      <div>
+        <AddColumn/>
       </div>
     </section>
   );

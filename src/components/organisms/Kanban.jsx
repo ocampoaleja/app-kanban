@@ -1,15 +1,16 @@
-import React from "react";
+import React ,{useContext} from "react";
 import KanbanColumn from "../molecules/Kanban.Column";
+import {KanbanContext} from "../../context/KanbanContext";
 
-export default function Kanban({ data }) {
-  console.log("data", data, data.columns, typeof data.columns);
+export default function Kanban() {
+  const {kanbanData}= useContext(KanbanContext)
 
   return (
     <section>
-      {typeof data.columns === "undefined" ? (
+      {typeof kanbanData.columns === "undefined" ? (
         <div>unloaded</div>
       ) : (
-        Object.entries(data.columns).map((column) => (
+        Object.entries(kanbanData.columns).map((column) => (
           <KanbanColumn title={column[0]} cards={column[1]} />
         ))
       )}

@@ -2,5 +2,8 @@ import React from "react";
 
 export default function KanbanCard({ data }) {
   console.log(data);
-  return <div>{data.title}</div>;
+  return <div>
+            {data.title}
+            <button>Delete</button>
+          </div>;
 }
